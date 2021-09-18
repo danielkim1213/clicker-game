@@ -1,16 +1,13 @@
 package clickerGame;
-
-	import java.awt.Dimension;
+	
+	import java.awt.*;
 	import javax.swing.*;
-	import java.awt.Font;
 	import java.awt.event.*;
 	import java.util.*;
-import java.awt.Color;
-import java.awt.SystemColor;
-import javax.swing.GroupLayout.Alignment;
+	import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.Timer;
-import javax.swing.table.DefaultTableModel;
+import java.io.*;
 
 public class Main {
 		static JFrame frame = new JFrame();
@@ -21,6 +18,7 @@ public class Main {
 		private static final JLabel lblPerSec = new JLabel("");
 		static JScrollPane scrollPane = new JScrollPane();
 		private static Timer timer;
+		private File saveData = new File("resources/saveData.txt");
 
 		public static int loc = 0; // variable that stores the total LOC count
 		public static double locDecimal = 0.0;
@@ -61,7 +59,7 @@ public class Main {
 		}
 
 		public static void setTimer() {
-			timer = new Timer(1000 - (jdkCount * 10), new ActionListener(){
+			timer = new Timer(1000 - (jdkCount * 20), new ActionListener(){
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -81,9 +79,8 @@ public class Main {
 			frame.setVisible(true);
 		}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Intro.instruction();
-		
 		//adding Strings in textboxWords ArrayList
 		textboxWords.add("int i = 0;");
 		textboxWords.add("String hello");
@@ -126,8 +123,6 @@ public class Main {
 		textboxWords.add("professionally vibing");
 		textboxWords.add("deltarune 2!");
 
-
-		
 		frame.setBackground(Color.WHITE);
 		JPanel pnl1 = new JPanel();
 		//pnl1.setBackground(SystemColor.info);
@@ -135,7 +130,6 @@ public class Main {
 
 		frame.getContentPane().add(pnl1);
 		pnl1.setLayout(null);
-
 
 		lblCodes.setFont(new Font("Arial", Font.BOLD, 16));
 		lblCodes.setBounds(39, 465, 252, 40);
@@ -152,10 +146,6 @@ public class Main {
 		txtInputCode.setBounds(39, 500, 252, 40);
 		pnl1.add(txtInputCode);
 		txtInputCode.setColumns(10);
-
-
-
-
 		lblLOC.setFont(new Font("Arial", Font.BOLD, 25));
 		lblLOC.setBounds(39, 63, 252, 77);
 		pnl1.add(lblLOC);
@@ -187,6 +177,9 @@ public class Main {
 		boatButton.setFocusPainted(false);
 		boatButton.setBorder(null);
 		boatButton.setIcon(boat);
+		boatButton.setOpaque(false);
+		boatButton.setContentAreaFilled(false);
+		boatButton.setBorderPainted(false);
 		boatButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {		
@@ -207,8 +200,7 @@ public class Main {
 	}
 		
 		static void storeUI() {
-			
-			
+
 			JSplitPane splitPane = new JSplitPane();
 			splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 			scrollPane.setViewportView(splitPane);
@@ -661,7 +653,7 @@ public class Main {
 				public void mouseClicked(MouseEvent e) {
 					if (loc >= (int) (10000 * (Math.pow(1.1, keyboardCount)))) {
 						loc -= (int) (10000 * (Math.pow(1.1, keyboardCount)));
-						lblKeyboard_cost.setText("cost: " + (int) (10000 * (Math.pow(1.1, gitHubCount + 1))));
+						lblKeyboard_cost.setText("cost: " + (int) (10000 * (Math.pow(1.1, keyboardCount + 1))));
 						keyboardCount++;
 						lblKeyboard.setText("Mechanical Keyboard (" + keyboardCount + ")");
 						keyboardBoost += 30;
@@ -783,7 +775,12 @@ public class Main {
 						.addContainerGap())
 			);
 			panel_JDK.setLayout(gl_panel_JDK);
-			
-			
+
+		}
+
+		public static void setSaveData() throws Exception {
+			PrintWriter out = new PrintWriter("resources/saveData.txt");
+			out.write("LOC:" + loc);
+
 		}
 	}
