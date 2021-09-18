@@ -14,6 +14,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 	public class Main {
 		
@@ -50,9 +52,14 @@ import java.awt.event.MouseEvent;
 				{
 					txtInputCode.setText("");
 				}
-			}
+			}			
+			
 		}
-		
+
+		@Override
+		public void actionPerformed(ActionEvent e){
+			LOC++;	
+		}
 		
 		public static void main(String[] args) {
 			//adding Strings in textboxWords ArrayList
@@ -114,6 +121,7 @@ import java.awt.event.MouseEvent;
 			panel.setBackground(new Color(255, 232, 241));
 			
 			scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 			scrollPane.setBounds(338, 23, 510, 548);
 			pnl1.add(scrollPane);
 			storeUI();
@@ -129,7 +137,9 @@ import java.awt.event.MouseEvent;
 			boatButton.setFocusPainted(false);
 			boatButton.setBorder(null);
 			boatButton.setIcon(boat);
+			boatButton.addActionListener(this);
 			boatPanel.add(boatButton);
+
 			
 			frame.setResizable(false);
 			frame.setVisible(true);
