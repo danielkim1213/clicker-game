@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Main {
 		
-		
+		static JFrame frame = new JFrame();
 		private static JTextField txtInputCode;
 		static JLabel lblLOC = new JLabel("New label");
 		static final JLabel lblCodes = new JLabel("New label", SwingConstants.CENTER);
@@ -74,8 +74,16 @@ public class Main {
 				}
 			});
 		}
+		
+	public static void GameOn()
+	{
+		frame.setVisible(true);
+	}
 
 	public static void main(String[] args) {
+		
+		Intro.instruction();
+		
 		//adding Strings in textboxWords ArrayList
 		textboxWords.add("int i = 0;");
 		textboxWords.add("String hell");
@@ -90,7 +98,8 @@ public class Main {
 		textboxWords.add("#hackthenorth");
 		textboxWords.add("int random = Math.random()");
 		textboxWords.add("Scanner s = new Scanner");
-		JFrame frame = new JFrame();
+		
+		
 		frame.setBackground(Color.WHITE);
 		JPanel pnl1 = new JPanel();
 		//pnl1.setBackground(SystemColor.info);
@@ -98,7 +107,8 @@ public class Main {
 
 		frame.getContentPane().add(pnl1);
 		pnl1.setLayout(null);
-
+		
+		
 
 		lblCodes.setFont(new Font("Arial", Font.BOLD, 16));
 		lblCodes.setBounds(39, 465, 252, 40);
@@ -160,11 +170,11 @@ public class Main {
 		boatPanel.add(boatButton);
 
 		frame.setResizable(false);
-		frame.setVisible(true);
 		frame.setPreferredSize(new Dimension(870, 630));
 		frame.setSize(870, 630);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setTimer();
 		timer.start();
 		scrollPane.getVerticalScrollBar().setUnitIncrement(8);
