@@ -21,7 +21,7 @@ public class Main {
 		static ArrayList<String> textboxWords = new ArrayList<String>();
 		private static final JLabel lblPerSec = new JLabel("");
 		static JScrollPane scrollPane = new JScrollPane();
-	private static Timer timer;
+		private static Timer timer;
 
 		public static int loc = 0; // variable that stores the total LOC count
 		public static double locDecimal = 0.0;
@@ -188,7 +188,7 @@ public class Main {
 			JPanel panel_GitHub = new JPanel();
 			splitPane_3.setRightComponent(panel_GitHub);
 			
-			JLabel lblGitHub = new JLabel("GitHub Copilot (0/1)");
+			final JLabel lblGitHub = new JLabel("GitHub Copilot (0/1)");
 			lblGitHub.setForeground(new Color(0, 0, 0));
 			lblGitHub.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
 			
@@ -202,7 +202,7 @@ public class Main {
 			txtGitHub.setEditable(false);
 			txtGitHub.setBackground(new Color(255, 239, 213));
 			
-			JButton btnGitHub = new JButton("Upgrade!");
+			final JButton btnGitHub = new JButton("Upgrade!");
 				//when the user clicked upgrade button of GitHub
 			btnGitHub.addMouseListener(new MouseAdapter() {
 				@Override
@@ -266,7 +266,7 @@ public class Main {
 			JPanel panel_StackOverflow = new JPanel();
 			splitPane_3.setLeftComponent(panel_StackOverflow);
 			
-			JLabel lblStackOverflow = new JLabel("Stack Overflow (0/10)");
+			final JLabel lblStackOverflow = new JLabel("Stack Overflow (0/10)");
 			lblStackOverflow.setForeground(new Color(255, 99, 71));
 			lblStackOverflow.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
 			
@@ -346,21 +346,21 @@ public class Main {
 			JPanel panel_IDE = new JPanel();
 			splitPane_4.setLeftComponent(panel_IDE);
 
-			JLabel lblIDE = new JLabel("Java IDE (0/3)");
+			final JLabel lblIDE = new JLabel("Java IDE (0/3)");
 			lblIDE.setForeground(new Color(0, 0, 128));
 			lblIDE.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
 
-			JLabel lblIDE_cost = new JLabel("cost: 10 LOC ");
+			final JLabel lblIDE_cost = new JLabel("cost: 10 LOC ");
 			lblIDE_cost.setForeground(new Color(0, 0, 128));
 			lblIDE_cost.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 22));
 			
-			JTextArea txtIDE = new JTextArea();
-			txtIDE.setText("Looks nicer than doing it in Notepad.\r\n\r\n- Increases LOC generated from \r\nclicking by 3.\r\n");
+			final JTextArea txtIDE = new JTextArea();
+			txtIDE.setText("Looks nicer than doing it in Notepad.\r\n- Increases LOC generated from \r\nclicking by 3.\r\n");
 			txtIDE.setFont(new Font("Arial", Font.PLAIN, 17));
 			txtIDE.setEditable(false);
 			txtIDE.setBackground(new Color(255, 239, 213));
 			
-			JButton btnIDE = new JButton("Upgrade!");
+			final JButton btnIDE = new JButton("Upgrade!");
 			//when the user clicked upgrade button of IDE
 			btnIDE.addMouseListener(new MouseAdapter() {
 				@Override
@@ -371,7 +371,7 @@ public class Main {
 						lblLOC.setText(Integer.toString(loc));
 						IDECount++;
 						lblIDE.setText("Paid Java IDE (1/3)");
-						txtIDE.setText("You have a proper IDE but you want \r\n more!.\r\n\r\n- Increases LOC generated from \r\nclicking by 6.\r\n");
+						txtIDE.setText("You have a proper IDE but you want \r\n more!.\r\n- Increases LOC generated from \r\nclicking by 6.\r\n");
 						lblIDE_cost.setText("Cost: 100 LOC");
 					}
 					else if (loc >= 100 && IDECount == 1) {
@@ -441,7 +441,7 @@ public class Main {
 			JPanel panel_YouTube = new JPanel();
 			splitPane_4.setRightComponent(panel_YouTube);
 			
-			JLabel lblYouTube = new JLabel("YouTube Tutorial (0/2)");
+			final JLabel lblYouTube = new JLabel("YouTube Tutorial (0/2)");
 			lblYouTube.setForeground(new Color(220, 20, 60));
 			lblYouTube.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
 			
@@ -455,7 +455,7 @@ public class Main {
 			txtYouTube.setEditable(false);
 			txtYouTube.setBackground(new Color(255, 239, 213));
 			
-			JButton btnYouTube = new JButton("Upgrade!");
+			final JButton btnYouTube = new JButton("Upgrade!");
 			//when the user clicked upgrade button of YouTube
 			btnYouTube.addMouseListener(new MouseAdapter() {
 				@Override
@@ -527,7 +527,7 @@ public class Main {
 			JPanel panel_Classmate = new JPanel();
 			splitPane_5.setLeftComponent(panel_Classmate);
 			
-			JLabel lblClassmate = new JLabel("Friendly \"Classmate\" (0/3)");
+			final JLabel lblClassmate = new JLabel("Friendly \"Classmate\" (0/3)");
 			lblClassmate.setForeground(new Color(46, 139, 87));
 			lblClassmate.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
 			
@@ -541,7 +541,7 @@ public class Main {
 			txtClassmate.setEditable(false);
 			txtClassmate.setBackground(new Color(255, 239, 213));
 			
-			JButton btnClassmate = new JButton("Upgrade!");
+			final JButton btnClassmate = new JButton("Upgrade!");
 			//when the user clicked upgrade button of Classmate
 			btnClassmate.addMouseListener(new MouseAdapter() {
 				@Override
@@ -614,7 +614,7 @@ public class Main {
 			lblKeyboard_cost.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 22));
 			
 			JTextArea txtKeyboard = new JTextArea();
-			txtKeyboard.setText("Your neighbors show up at your door with a \r\nnoise complaint, but you can\u2019t...stop...coding...\r\n\r\n- Produces: 50 LOC per second\r\n");
+			txtKeyboard.setText("Your neighbors show up at your door with a \r\nnoise complaint, but you can\u2019t...stop...coding...\r\n- Produces: 50 LOC per second\r\n");
 			txtKeyboard.setFont(new Font("Arial", Font.PLAIN, 15));
 			txtKeyboard.setEditable(false);
 			txtKeyboard.setBackground(new Color(255, 239, 213));
@@ -731,4 +731,3 @@ public class Main {
 			
 		}
 	}
-
