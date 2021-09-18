@@ -13,7 +13,6 @@ import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
 public class Main {
-		
 		static JFrame frame = new JFrame();
 		private static JTextField txtInputCode;
 		static JLabel lblLOC = new JLabel("New label");
@@ -32,7 +31,9 @@ public class Main {
 		public static int youtubeCount = 0;
 		public static int classmateCount = 0;
 		public static int keyboardCount = 0;
-		public static int boost = 0;
+		public static int clickBoost = 0;
+		public static int keyboardBoost = 0;
+		public static int jdkCount = 0;
 
 		//when enter pressed
 		private static void locMining(KeyEvent e)
@@ -46,7 +47,7 @@ public class Main {
 				inputCode = inputCode.replaceAll(" ", "");
 				if (qCode.equals(inputCode))
 				{
-					int plus_loc = inputCode.length();
+					int plus_loc = (inputCode.length() * (1 + (keyboardBoost/100)));
 					loc += plus_loc;
 					lblLOC.setText(Integer.toString(loc));
 					txtInputCode.setText("");
@@ -60,7 +61,7 @@ public class Main {
 		}
 
 		public static void setTimer() {
-			timer = new Timer(1000, new ActionListener(){
+			timer = new Timer(1000 - (jdkCount * 10), new ActionListener(){
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -75,18 +76,17 @@ public class Main {
 			});
 		}
 		
-	public static void GameOn()
-	{
-		frame.setVisible(true);
-	}
+		public static void GameOn()
+		{
+			frame.setVisible(true);
+		}
 
 	public static void main(String[] args) {
-		
 		Intro.instruction();
 		
 		//adding Strings in textboxWords ArrayList
 		textboxWords.add("int i = 0;");
-		textboxWords.add("String hell");
+		textboxWords.add("String hello");
 		textboxWords.add("for (int i = 0)");
 		textboxWords.add("while (true)");
 		textboxWords.add("System.out.println");
@@ -98,7 +98,35 @@ public class Main {
 		textboxWords.add("#hackthenorth");
 		textboxWords.add("int random = Math.random()");
 		textboxWords.add("Scanner s = new Scanner");
-		
+		textboxWords.add("Hello world!");
+		textboxWords.add("hamburgers");
+		textboxWords.add("pineapple on pizza");
+		textboxWords.add("never gonna give you up");
+		textboxWords.add("@everyone");
+		textboxWords.add("@Override");
+		textboxWords.add("while (false) {}");
+		textboxWords.add("do {} while (yes);");
+		textboxWords.add("@here");
+		textboxWords.add("double num = 6.9;");
+		textboxWords.add("if (((!a) && (b)) || ((a) && ((!b) || a)))");
+		textboxWords.add("never gonna let you down");
+		textboxWords.add("textboxWords.add(\"\");");
+		textboxWords.add("You're watching Treehouse");
+		textboxWords.add("Try Grammarly for Free");
+		textboxWords.add("Remember to drink water!");
+		textboxWords.add("Sponsored by Raid Shadow Legends!");
+		textboxWords.add("Sleep is good");
+		textboxWords.add("DIAMONDS!");
+		textboxWords.add("char a = 'A'");
+		textboxWords.add("how do they program a programming language to program a program to program programs?");
+		textboxWords.add("push through the pain");
+		textboxWords.add("help im trapped in a video game-");
+		textboxWords.add("whatever floats your boat");
+		textboxWords.add("pro is short for programmer B)");
+		textboxWords.add("professionally vibing");
+		textboxWords.add("deltarune 2!");
+
+
 		
 		frame.setBackground(Color.WHITE);
 		JPanel pnl1 = new JPanel();
@@ -107,8 +135,7 @@ public class Main {
 
 		frame.getContentPane().add(pnl1);
 		pnl1.setLayout(null);
-		
-		
+
 
 		lblCodes.setFont(new Font("Arial", Font.BOLD, 16));
 		lblCodes.setBounds(39, 465, 252, 40);
@@ -163,7 +190,7 @@ public class Main {
 		boatButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {		
-				loc++;
+				loc += (clickBoost + 1);
 				lblLOC.setText(Integer.toString(loc));
 			}
 		});
@@ -174,7 +201,6 @@ public class Main {
 		frame.setSize(870, 630);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		setTimer();
 		timer.start();
 		scrollPane.getVerticalScrollBar().setUnitIncrement(8);
@@ -198,11 +224,11 @@ public class Main {
 			JPanel panel_GitHub = new JPanel();
 			splitPane_3.setRightComponent(panel_GitHub);
 			
-			final JLabel lblGitHub = new JLabel("GitHub Copilot (0/1)");
+			final JLabel lblGitHub = new JLabel("GitHub Copilot (0)");
 			lblGitHub.setForeground(new Color(0, 0, 0));
 			lblGitHub.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
 			
-			JLabel lblGitHub_cost = new JLabel("cost: ");
+			final JLabel lblGitHub_cost = new JLabel("cost: 100");
 			lblGitHub_cost.setForeground(new Color(0, 0, 0));
 			lblGitHub_cost.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 22));
 			
@@ -217,17 +243,15 @@ public class Main {
 			btnGitHub.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					if (loc >= 100 && gitHubCount < 1) {
-						loc -= 100;
+					if (loc >= (int) (100 * (Math.pow(1.1, gitHubCount)))) {
+						loc -= (int) (100 * (Math.pow(1.1, gitHubCount)));
+						lblGitHub_cost.setText("cost: " + (int) (100 * (Math.pow(1.1, gitHubCount + 1))));
 						gitHubCount++;
-						lblGitHub.setText("GitHub Copilot (" + gitHubCount + "/1)");
+						lblGitHub.setText("GitHub Copilot (" + gitHubCount + ")");
 						locTime += 1;
 						locTime = (Math.round(locTime * 10.0)) / 10.0;
 						lblLOC.setText(Integer.toString(loc));
 						lblPerSec.setText(locTime + " lines of code / sec");
-						if (gitHubCount == 1) {
-							btnGitHub.setEnabled(false);
-						}
 					} else {
 						JOptionPane.showMessageDialog(null, "Insufficient Lines of Code!", "Error",
 								JOptionPane.WARNING_MESSAGE);
@@ -276,11 +300,11 @@ public class Main {
 			JPanel panel_StackOverflow = new JPanel();
 			splitPane_3.setLeftComponent(panel_StackOverflow);
 			
-			final JLabel lblStackOverflow = new JLabel("Stack Overflow (0/10)");
+			final JLabel lblStackOverflow = new JLabel("Stack Overflow (0)");
 			lblStackOverflow.setForeground(new Color(255, 99, 71));
 			lblStackOverflow.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
 			
-			JLabel lblStackOverflow_cost = new JLabel("cost: ");
+			final JLabel lblStackOverflow_cost = new JLabel("cost: 15");
 			lblStackOverflow_cost.setForeground(new Color(255, 99, 71));
 			lblStackOverflow_cost.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 22));
 			
@@ -296,10 +320,11 @@ public class Main {
 			btnStackOverflow.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					if (loc >= 15 && stackOverflowCount < 10) {
-						loc -= 15;
+					if (loc >= (int) (15 * (Math.pow(1.1, stackOverflowCount)))) {
+						loc -= (int) (15 * (Math.pow(1.1, stackOverflowCount)));
+						lblStackOverflow_cost.setText("cost: " + (int) (15 * (Math.pow(1.1, stackOverflowCount + 1))));
 						stackOverflowCount++;
-						lblStackOverflow.setText("Stack Overflow (" + stackOverflowCount + "/10)");
+						lblStackOverflow.setText("Stack Overflow (" + stackOverflowCount + ")");
 						locTime += 0.1;
 						locTime = (Math.round(locTime * 10.0)) / 10.0;
 						lblLOC.setText(Integer.toString(loc));
@@ -360,7 +385,7 @@ public class Main {
 			lblIDE.setForeground(new Color(0, 0, 128));
 			lblIDE.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
 
-			final JLabel lblIDE_cost = new JLabel("cost: 10 LOC ");
+			final JLabel lblIDE_cost = new JLabel("cost: 10");
 			lblIDE_cost.setForeground(new Color(0, 0, 128));
 			lblIDE_cost.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 22));
 			
@@ -377,25 +402,25 @@ public class Main {
 				public void mouseClicked(MouseEvent e) {
 					if(loc >= 10 && IDECount == 0) {
 						loc -= 10;
-						boost = 3;
+						clickBoost = 3;
 						lblLOC.setText(Integer.toString(loc));
 						IDECount++;
 						lblIDE.setText("Paid Java IDE (1/3)");
 						txtIDE.setText("You have a proper IDE but you want \r\n more!.\r\n- Increases LOC generated from \r\nclicking by 6.\r\n");
-						lblIDE_cost.setText("Cost: 100 LOC");
+						lblIDE_cost.setText("Cost: 100");
 					}
 					else if (loc >= 100 && IDECount == 1) {
 						loc -= 100;
-						boost = 6;
+						clickBoost = 6;
 						lblLOC.setText(Integer.toString(loc));
 						lblIDE.setText("Ultimate Paid Java IDE (2/3)");
 						txtIDE.setText("You have a paid IDE but you want \r\n even more!");
-						lblIDE_cost.setText("Cost: 10000 LOC");
+						lblIDE_cost.setText("Cost: 10000");
 						IDECount++;
 					}
 					else if (loc >= 10000 && IDECount == 2) {
 						loc -= 10000;
-						boost = 12;
+						clickBoost = 12;
 						lblLOC.setText(Integer.toString(loc));
 						lblIDE.setText("Ultimate Paid Java IDE (3/3)");
 						btnIDE.setEnabled(false);
@@ -451,11 +476,11 @@ public class Main {
 			JPanel panel_YouTube = new JPanel();
 			splitPane_4.setRightComponent(panel_YouTube);
 			
-			final JLabel lblYouTube = new JLabel("YouTube Tutorial (0/2)");
+			final JLabel lblYouTube = new JLabel("YouTube Tutorial (0)");
 			lblYouTube.setForeground(new Color(220, 20, 60));
 			lblYouTube.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
 			
-			JLabel lblYouTube_cost = new JLabel("cost: ");
+			final JLabel lblYouTube_cost = new JLabel("cost: 700");
 			lblYouTube_cost.setForeground(new Color(220, 20, 60));
 			lblYouTube_cost.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 22));
 			
@@ -470,17 +495,15 @@ public class Main {
 			btnYouTube.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					if (loc >= 700 && youtubeCount < 2) {
-						loc -= 700;
+					if (loc >= (int) (700 * (Math.pow(1.1, youtubeCount)))) {
+						loc -= (int) (700 * (Math.pow(1.1, youtubeCount)));
+						lblYouTube_cost.setText("cost: " + (int) (700 * (Math.pow(1.1, youtubeCount + 1))));
 						youtubeCount++;
-						lblYouTube.setText("YouTube Tutorial (" + youtubeCount + "/2)");
+						lblYouTube.setText("YouTube Tutorial (" + youtubeCount + ")");
 						locTime += 5;
 						locTime = (Math.round(locTime * 10.0)) / 10.0;
 						lblLOC.setText(Integer.toString(loc));
 						lblPerSec.setText(locTime + " lines of code / sec");
-						if (youtubeCount == 2) {
-							btnYouTube.setEnabled(false);
-						}
 					} else {
 						JOptionPane.showMessageDialog(null, "Insufficient Lines of Code!", "Error",
 								JOptionPane.WARNING_MESSAGE);
@@ -537,11 +560,11 @@ public class Main {
 			JPanel panel_Classmate = new JPanel();
 			splitPane_5.setLeftComponent(panel_Classmate);
 			
-			final JLabel lblClassmate = new JLabel("Friendly \"Classmate\" (0/3)");
+			final JLabel lblClassmate = new JLabel("Friendly \"Classmate\" (0)");
 			lblClassmate.setForeground(new Color(46, 139, 87));
 			lblClassmate.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
 			
-			JLabel lblClassmate_cost = new JLabel("cost: ");
+			final JLabel lblClassmate_cost = new JLabel("cost: 5000");
 			lblClassmate_cost.setForeground(new Color(46, 139, 87));
 			lblClassmate_cost.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 22));
 			
@@ -556,17 +579,15 @@ public class Main {
 			btnClassmate.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					if (loc >= 5000 && classmateCount < 3) {
-						loc -= 5000;
+					if (loc >= (int) (5000 * (Math.pow(1.1, classmateCount)))) {
+						loc -= (int) (5000 * (Math.pow(1.1, classmateCount)));
+						lblClassmate_cost.setText("cost: " + (int) (5000 * (Math.pow(1.1, classmateCount + 1))));
 						classmateCount++;
-						lblClassmate.setText("Friendly \"Classmate\" (" + classmateCount + "/3)");
+						lblClassmate.setText("Friendly \"Classmate\" (" + classmateCount + ")");
 						locTime += 15;
 						locTime = (Math.round(locTime * 10.0)) / 10.0;
 						lblLOC.setText(Integer.toString(loc));
 						lblPerSec.setText(locTime + " lines of code / sec");
-						if (classmateCount == 3) {
-							btnClassmate.setEnabled(false);
-						}
 					} else {
 						JOptionPane.showMessageDialog(null, "Insufficient Lines of Code!", "Error",
 								JOptionPane.WARNING_MESSAGE);
@@ -615,16 +636,20 @@ public class Main {
 			JPanel panel_Keyboard = new JPanel();
 			splitPane_5.setRightComponent(panel_Keyboard);
 			
-			JLabel lblKeyboard = new JLabel("Mechanical Keyboard (3/3)");
+			JLabel lblKeyboard = new JLabel("Mechanical Keyboard (0)");
 			lblKeyboard.setForeground(new Color(255, 0, 255));
 			lblKeyboard.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 17));
 			
-			JLabel lblKeyboard_cost = new JLabel("cost: ");
+			JLabel lblKeyboard_cost = new JLabel("cost: 10000");
 			lblKeyboard_cost.setForeground(new Color(255, 0, 255));
 			lblKeyboard_cost.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 22));
 			
 			JTextArea txtKeyboard = new JTextArea();
-			txtKeyboard.setText("Your neighbors show up at your door with a \r\nnoise complaint, but you can\u2019t...stop...coding...\r\n- Produces: 50 LOC per second\r\n");
+			txtKeyboard.setText("""
+					Your neighbors show up at your door with a \r
+					noise complaint, but you can\u2019t...stop...coding...\r
+					- +30% LOC from textbox mining\r
+					""");
 			txtKeyboard.setFont(new Font("Arial", Font.PLAIN, 15));
 			txtKeyboard.setEditable(false);
 			txtKeyboard.setBackground(new Color(255, 239, 213));
@@ -634,6 +659,17 @@ public class Main {
 			btnKeyboard.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					if (loc >= (int) (10000 * (Math.pow(1.1, keyboardCount)))) {
+						loc -= (int) (10000 * (Math.pow(1.1, keyboardCount)));
+						lblKeyboard_cost.setText("cost: " + (int) (10000 * (Math.pow(1.1, gitHubCount + 1))));
+						keyboardCount++;
+						lblKeyboard.setText("Mechanical Keyboard (" + keyboardCount + ")");
+						keyboardBoost += 30;
+						lblLOC.setText(Integer.toString(loc));
+					} else {
+						JOptionPane.showMessageDialog(null, "Insufficient Lines of Code!", "Error",
+								JOptionPane.WARNING_MESSAGE);
+					}
 				}
 			});
 			btnKeyboard.setForeground(new Color(240, 248, 255));
@@ -678,16 +714,16 @@ public class Main {
 			JPanel panel_JDK = new JPanel();
 			splitPane_2.setRightComponent(panel_JDK);
 			
-			JLabel lblJDK = new JLabel("JDK Upgrade (1/21)");
+			JLabel lblJDK = new JLabel("JDK Upgrade (0/23)");
 			lblJDK.setForeground(new Color(0, 191, 255));
 			lblJDK.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
 			
-			JLabel lblJDK_cost = new JLabel("cost: ");
+			JLabel lblJDK_cost = new JLabel("cost: 300");
 			lblJDK_cost.setForeground(new Color(0, 191, 255));
 			lblJDK_cost.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 22));
 			
 			JTextArea txtJDK = new JTextArea();
-			txtJDK.setText("Looks like you\u2019ll need to do a lot of \r\nGoogling.\r\n- Increases LOC generated from clicking \r\nby 1\r\n");
+			txtJDK.setText("Looks like you\u2019ll need to do a lot of \r\nGoogling.\r\n- Decreases LOC/sec timer by 1% \r\nper level \r\n");
 			txtJDK.setFont(new Font("Arial", Font.PLAIN, 17));
 			txtJDK.setEditable(false);
 			txtJDK.setBackground(new Color(255, 239, 213));
@@ -697,6 +733,16 @@ public class Main {
 			btnJDK.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					if (loc >= (int) (300 * (Math.pow(1.3, jdkCount))) && jdkCount < 23) {
+						loc -= (int) (300 * (Math.pow(1.3, jdkCount)));
+						lblJDK_cost.setText("cost: " + (int) (300 * (Math.pow(1.3, jdkCount + 1))));
+						jdkCount++;
+						lblJDK.setText("JDK Upgrade (" + jdkCount + "/23)");
+						lblLOC.setText(Integer.toString(loc));
+					} else {
+						JOptionPane.showMessageDialog(null, "Insufficient Lines of Code!", "Error",
+								JOptionPane.WARNING_MESSAGE);
+					}
 				}
 			});
 			btnJDK.setForeground(new Color(240, 248, 255));
