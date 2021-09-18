@@ -277,7 +277,7 @@ import java.awt.event.MouseEvent;
 			lblIDE.setForeground(new Color(0, 0, 128));
 			lblIDE.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
 			
-			JLabel lblIDE_cost = new JLabel("cost: ");
+			JLabel lblIDE_cost = new JLabel("cost: 10 LOC ");
 			lblIDE_cost.setForeground(new Color(0, 0, 128));
 			lblIDE_cost.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 22));
 			
@@ -297,11 +297,20 @@ import java.awt.event.MouseEvent;
 						boost = 3;
 						lblLOC.setText(loc.toString());
 						purchasedIDE++;
-						txtIDE.setText("Time to get a better IDE?.\r\n\r\n- Increases LOC generated from \r\nclicking by 6.\r\n");
+						txtIDE.setText("You have a proper IDE but you want \r\n more!.\r\n\r\n- Increases LOC generated from \r\nclicking by 6.\r\n");
+						lblIDE_cost.setText("Cost: 100 LOC");
 					}
 					else if (loc >= 100 && purchasedIDE == 1) {
 						loc -= 100;
 						boost = 6;
+						lblLOC.setText(loc.toString());
+						txtIDE.setText("You have a paid IDE but you want \r\n even more!");
+						lblIDE_cost.setText("Cost: 10000 LOC");
+						purchasedIDE++;
+					}
+					else if (loc >= 100 && purchasedIDE == 2) {
+						loc -= 10000;
+						boost = 12;
 						lblLOC.setText(loc.toString());
 						btnIDE.setEnabled(false);
 						btnIDE.setText("Purchased");
