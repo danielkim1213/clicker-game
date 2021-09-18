@@ -273,7 +273,7 @@ import java.awt.event.MouseEvent;
 			JPanel panel_IDE = new JPanel();
 			splitPane_4.setLeftComponent(panel_IDE);
 			
-			JLabel lblIDE = new JLabel("Fancy Java IDE (1/1)");
+			JLabel lblIDE = new JLabel("Java IDE (0/3)");
 			lblIDE.setForeground(new Color(0, 0, 128));
 			lblIDE.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
 			
@@ -297,6 +297,7 @@ import java.awt.event.MouseEvent;
 						boost = 3;
 						lblLOC.setText(loc.toString());
 						purchasedIDE++;
+						lblIDE.setText("Paid Java IDE (1/3)");
 						txtIDE.setText("You have a proper IDE but you want \r\n more!.\r\n\r\n- Increases LOC generated from \r\nclicking by 6.\r\n");
 						lblIDE_cost.setText("Cost: 100 LOC");
 					}
@@ -304,6 +305,7 @@ import java.awt.event.MouseEvent;
 						loc -= 100;
 						boost = 6;
 						lblLOC.setText(loc.toString());
+						lblIDE.setText("Ultimate Paid Java IDE (2/3)");
 						txtIDE.setText("You have a paid IDE but you want \r\n even more!");
 						lblIDE_cost.setText("Cost: 10000 LOC");
 						purchasedIDE++;
@@ -312,6 +314,7 @@ import java.awt.event.MouseEvent;
 						loc -= 10000;
 						boost = 12;
 						lblLOC.setText(loc.toString());
+						lblIDE.setText("Ultimate Paid Java IDE (3/3)");
 						btnIDE.setEnabled(false);
 						btnIDE.setText("Purchased");
 						txtIDE.setText("You now have the best of the best!");
