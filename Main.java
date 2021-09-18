@@ -150,6 +150,13 @@ public class Main {
 		boatButton.setFocusPainted(false);
 		boatButton.setBorder(null);
 		boatButton.setIcon(boat);
+		boatButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
+				loc++;
+				lblLOC.setText(Integer.toString(loc));
+			}
+		});
 		boatPanel.add(boatButton);
 
 		frame.setResizable(false);
