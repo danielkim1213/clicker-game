@@ -1,0 +1,71 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.TransferHandler;
+
+public class BoatClickerMain implements ActionListener {
+    private JFrame f;
+    private JPanel p;
+    private Icon i;
+    private JLabel textboxLabel;
+    private JLabel showCounter;
+    private JTextField field;
+    private JButton b;
+    private int linesOfCode;
+
+    public BoatClickerMain() {
+        String[] textboxWords = new String[]{"int i = 0;", "String hell", "for (int i = 0)", "while (true)", "System.out.println", "hot dogs", "ur mom", "public static", "void main", "+1 Line of Code!", "f = new JFrame();", "import java.util.Scanner", "#hackthenorth", "int random = Math.random()", "Scanner s = new Scanner"};
+        this.f = new JFrame();
+        this.textboxLabel = new JLabel();
+        this.showCounter = new JLabel("LOCs: 0", 0);
+        this.p = new JPanel();
+        this.b = new JButton(this.i);
+        this.b.addActionListener(this);
+        this.field = new JTextField(10);
+        this.p.setBorder(BorderFactory.createEmptyBorder(300, 300, 100, 300));
+        this.p.setLayout(new GridLayout(0, 1));
+        this.p.add(this.showCounter);
+        this.p.add(this.textboxLabel);
+        this.p.add(this.field);
+        this.p.add(this.b);
+        this.f.add(this.p, "Center");
+        this.f.setDefaultCloseOperation(3);
+        this.f.setTitle("Our GUI");
+        this.f.pack();
+        this.f.setVisible(true);
+        this.field.setTransferHandler((TransferHandler)null);
+
+        while(true) {
+            int random = (int)(Math.random() * (double)textboxWords.length);
+            this.textboxLabel.setText("Type out \"" + textboxWords[random] + "\"!");
+
+            while(!this.field.getText().equals(textboxWords[random])) {
+            }
+
+            this.linesOfCode += textboxWords[random].length() / 2;
+            this.field.setText("");
+            this.showCounter.setText("LOCs: " + this.linesOfCode);
+        }
+    }
+
+    public static void main(String[] args) {
+        new BoatClickerMain();
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        ++this.linesOfCode;
+        this.showCounter.setText("LOCs: " + this.linesOfCode);
+    }
+}
