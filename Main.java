@@ -62,7 +62,6 @@ import java.awt.event.MouseEvent;
 			textboxWords.add("while (true)");
 			textboxWords.add("System.out.println");
 			textboxWords.add("hot dogs");
-			textboxWords.add("ur mom");
 			textboxWords.add("public static");
 			textboxWords.add("public void main(String[] args)");
 			textboxWords.add("f = new JFrame();");
@@ -73,15 +72,15 @@ import java.awt.event.MouseEvent;
 			JFrame frame = new JFrame();
 			frame.setBackground(Color.WHITE);
 			JPanel pnl1 = new JPanel();
-			pnl1.setBackground(SystemColor.info);
-			
+			//pnl1.setBackground(SystemColor.info);
+			pnl1.setBackground(new Color(232, 241, 255));
 			
 			frame.getContentPane().add(pnl1);
 			pnl1.setLayout(null);
 		
 			
 			lblCodes.setFont(new Font("Arial", Font.BOLD, 16));
-			lblCodes.setBounds(39, 255, 252, 40);
+			lblCodes.setBounds(39, 465, 252, 40);
 			lblCodes.setText("int i = 0;");
 			pnl1.add(lblCodes);
 			
@@ -92,16 +91,18 @@ import java.awt.event.MouseEvent;
 					locMining(e);
 				}
 			});
-			txtInputCode.setBounds(39, 305, 252, 40);
+			txtInputCode.setBounds(39, 500, 252, 40);
 			pnl1.add(txtInputCode);
 			txtInputCode.setColumns(10);
 			
-			
-			lblLOC.setFont(new Font("Arial", Font.BOLD, 45));
+
+
+
+			lblLOC.setFont(new Font("Arial", Font.BOLD, 25));
 			lblLOC.setBounds(39, 63, 252, 77);
 			pnl1.add(lblLOC);
 			lblLOC.setText(loc.toString());
-			lblPerSec.setFont(new Font("±¼¸²", Font.PLAIN, 13));
+			lblPerSec.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 13));
 			lblPerSec.setBounds(39, 150, 252, 40);
 			lblPerSec.setText(locTime + " lines of code / sec");
 			
@@ -110,20 +111,40 @@ import java.awt.event.MouseEvent;
 			JPanel panel = new JPanel();
 			panel.setBounds(22, 23, 304, 371);
 			pnl1.add(panel);
+			panel.setBackground(new Color(255, 232, 241));
 			
 			scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			scrollPane.setBounds(338, 23, 475, 548);
+			scrollPane.setBounds(338, 23, 510, 548);
 			pnl1.add(scrollPane);
 			storeUI();
+
+			JPanel boatPanel = new JPanel();
+			boatPanel.setBounds(65, 200, 200, 160);
+			boatPanel.setBackground(new Color(255, 232, 241));
+			pnl1.add(boatPanel);
+			ImageIcon boat = new ImageIcon("resources/guest200x160.png");
+			
+			JButton boatButton = new JButton();
+			boatButton.setBackground(new Color(255, 232, 241));
+			boatButton.setFocusPainted(false);
+			boatButton.setBorder(null);
+			boatButton.setIcon(boat);
+			boatPanel.add(boatButton);
 			
 			frame.setResizable(false);
 			frame.setVisible(true);
-			frame.setPreferredSize(new Dimension(840, 630));
-			frame.setSize(840, 630);
+			frame.setPreferredSize(new Dimension(870, 630));
+			frame.setSize(870, 630);
 			frame.setLocationRelativeTo(null);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		}
-		
+
+/* 		static void boatButton(){
+
+		}
+ */
+
 		static void storeUI() {
 			
 			
