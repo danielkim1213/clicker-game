@@ -46,7 +46,7 @@ public class Intro {
 		frameIntro.getContentPane().add(btnNewButton);
 		
 		txtDescription = new JTextArea();
-		txtDescription.setFont(new Font("Arial", Font.PLAIN, 30));
+		txtDescription.setFont(new Font("Arial", Font.PLAIN, 29));
 		txtDescription.setEditable(false);
 		txtDescription.setBounds(12, 116, 832, 350);
 		frameIntro.getContentPane().add(txtDescription);
