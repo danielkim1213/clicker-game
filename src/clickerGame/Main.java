@@ -22,7 +22,7 @@ public class Main {
 		public static Timer timer;
 		private File saveData = new File("resources\\saveData.txt");
 
-		public static int loc = 1000000; // variable that stores the total LOC count
+		public static int loc = 0; // variable that stores the total LOC count
 		public static double locDecimal = 0.0;
 		public static double locTime = 0.0; // variable that counts how many LOCs are gained per second
 		public static int stackOverflowCount = 0; // counts  how many times each upgrade has been purchased
@@ -389,7 +389,7 @@ public class Main {
 			JPanel panel_IDE = new JPanel();
 			splitPane_4.setLeftComponent(panel_IDE);
 
-			final JLabel lblIDE = new JLabel("Java IDE (0/3)");
+			final JLabel lblIDE = new JLabel("Java IDE (0/6)");
 			lblIDE.setForeground(new Color(0, 0, 128));
 			lblIDE.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
 
