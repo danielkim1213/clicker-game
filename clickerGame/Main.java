@@ -1,5 +1,5 @@
 package clickerGame;
-	
+
 	import java.awt.*;
 	import javax.swing.*;
 	import java.awt.event.*;
@@ -18,7 +18,7 @@ public class Main {
 		private static final JLabel lblPerSec = new JLabel("");
 		static JScrollPane scrollPane = new JScrollPane();
 		private static Timer timer;
-		private File saveData = new File("resources/saveData.txt");
+		private File saveData = new File("resources\\saveData.txt");
 
 		public static int loc = 0; // variable that stores the total LOC count
 		public static double locDecimal = 0.0;
@@ -70,6 +70,11 @@ public class Main {
 						locDecimal--;
 					}
 					lblLOC.setText(Integer.toString(loc));
+					try {
+						setSaveData();
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
 				}
 			});
 		}
@@ -176,8 +181,8 @@ public class Main {
 		boatPanel.add(boatButton);
 
 		frame.setResizable(false);
-		frame.setPreferredSize(new Dimension(1000, 630));
-		frame.setSize(1000, 630);
+		frame.setPreferredSize(new Dimension(870, 630));
+		frame.setSize(870, 630);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTimer();
@@ -763,8 +768,10 @@ public class Main {
 		}
 
 		public static void setSaveData() throws Exception {
-			PrintWriter out = new PrintWriter("resources/saveData.txt");
-			out.write("LOC:" + loc);
-
+			PrintWriter out = new PrintWriter("resources\\saveData.txt");
+			out.write(loc + "\n" + locDecimal + "\n" + locTime + "\n" + stackOverflowCount + "\n" +
+					gitHubCount + "\n" + IDECount + "\n" + youtubeCount + "\n" + classmateCount + "\n" +
+					keyboardCount + "\n" + clickBoost + "\n" + keyboardBoost + "\n" + jdkCount);
+			out.close();
 		}
 	}
