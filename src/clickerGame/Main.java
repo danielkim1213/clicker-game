@@ -486,48 +486,48 @@ public class Main {
 						lblLOC.setText(Integer.toString(loc));
 						IDECount++;
 						lblIDE.setText("Paid Java IDE (1/6)");
-						txtIDE.setText("You have a proper IDE but you want \r\n more!.\r\n- Increases LOC generated from \r\nclicking by 10.\r\n");
+						txtIDE.setText("You have a proper IDE but you want \r\n more!.\r\n- Increases LOC generated from \r\nclicking by 5.\r\n");
 						lblIDE_cost.setText("Cost: 100");
 					}
 					else if (loc >= 100 && IDECount == 1) {
 						loc -= 100;
-						clickBoost = 10;
+						clickBoost = 5;
 						lblLOC.setText(Integer.toString(loc));
 						lblIDE.setText("Ultimate Paid Java IDE (2/6)");
-						txtIDE.setText("You have a paid IDE but you want \r\neven more! Increase LOC/click by 100");
+						txtIDE.setText("You have a paid IDE but you want \r\neven more! Increase LOC/click by 25");
 						lblIDE_cost.setText("Cost: 1000");
 						IDECount++;
 					}
 					else if (loc >= 1000 && IDECount == 2) {
 						loc -= 1000;
-						clickBoost = 100;
+						clickBoost = 25;
 						lblLOC.setText(Integer.toString(loc));
 						lblIDE.setText("Ultimate Paid Java IDE (3/6)");
-						txtIDE.setText("You have a paid IDE but you want \r\neven more! Increase LOC/click by 1000");
+						txtIDE.setText("You have a paid IDE but you want \r\neven more! Increase LOC/click by 100");
 						lblIDE_cost.setText("Cost: 10000");
 						IDECount++;
 					}
 					else if (loc >= 10000 && IDECount == 3) {
 						loc -= 10000;
-						clickBoost = 1000;
+						clickBoost = 100;
 						lblLOC.setText(Integer.toString(loc));
 						lblIDE.setText("Ultimate Paid Java IDE (4/6)");
-						txtIDE.setText("You have a paid IDE but you want \r\neven more!Increase LOC/click by 10000");
+						txtIDE.setText("You have a paid IDE but you want \r\neven more!Increase LOC/click by 400");
 						lblIDE_cost.setText("Cost: 100000");
 						IDECount++;
 					}
 					else if (loc >= 100000 && IDECount == 4) {
 						loc -= 100000;
-						clickBoost = 10000;
+						clickBoost = 400;
 						lblLOC.setText(Integer.toString(loc));
 						lblIDE.setText("Ultimate Paid Java IDE (5/6)");
-						btnIDE.setText("Purchased");
-						txtIDE.setText("You now have the best of the best!\r\n(but there's an update!)\r\nIncrease LOC/click by 100000");
+						lblIDE_cost.setText("Cost: 1000000");
+						txtIDE.setText("You now have the best of the best!\r\n(but there's an update!)\r\nIncrease LOC/click by 6400");
 						IDECount++;
 					}
 					else if (loc >= 1000000 && IDECount == 5) {
 						loc -= 1000000;
-						clickBoost = 100000;
+						clickBoost = 6400;
 						lblLOC.setText(Integer.toString(loc));
 						lblIDE.setText("Ultimate Paid Java IDE (6/6)");
 						btnIDE.setEnabled(false);
