@@ -1,13 +1,15 @@
+
 package clickerGame;
 
-import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
+	import java.awt.*;
+	import javax.swing.*;
+	import java.awt.event.*;
+	import java.sql.PreparedStatement;
+	import java.util.*;
+	import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
-import java.io.PrintWriter;
-import java.util.ArrayList;
+import javax.swing.Timer;
+import java.io.*;
 
 public class Main {
 		static JFrame frame = new JFrame();
@@ -17,7 +19,7 @@ public class Main {
 		static ArrayList<String> textboxWords = new ArrayList<String>();
 		private static final JLabel lblPerSec = new JLabel("");
 		static JScrollPane scrollPane = new JScrollPane();
-		private static Timer timer;
+		public static Timer timer;
 		private File saveData = new File("resources\\saveData.txt");
 
 		public static int loc = 1000000; // variable that stores the total LOC count
@@ -93,10 +95,9 @@ public class Main {
 			frame.setVisible(true);
 		}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Intro.instruction();
 		//adding Strings in textboxWords ArrayList
-
 		textboxWords.add("int i = 0;");
 		textboxWords.add("String hello");
 		textboxWords.add("for (int i = 0)");
@@ -142,7 +143,6 @@ public class Main {
 		//pnl1.setBackground(SystemColor.info);
 		pnl1.setBackground(new Color(232, 241, 255));
 
-
 		frame.getContentPane().add(pnl1);
 		pnl1.setLayout(null);
 
@@ -187,17 +187,23 @@ public class Main {
 		pnl1.add(boatPanel);
 		ImageIcon boat = new ImageIcon("resources/guest200x160.png");
 
-		BoatButton boatButton = new BoatButton(boat);
-		boatPanel.add(boatButton);
-		JButton btnNewButton = new JButton("Load");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JButton boatButton = new JButton();
+		boatButton.setBackground(new Color(255, 232, 241));
+		boatButton.setFocusPainted(false);
+		boatButton.setBorder(null);
+		boatButton.setIcon(boat);
+		boatButton.setOpaque(false);
+		boatButton.setContentAreaFilled(false);
+		boatButton.setBorderPainted(false);
+		boatButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		
+				loc += (clickBoost + 1);
+				lblLOC.setText(Integer.toString(loc));
+				restartTimer();
 			}
 		});
-		btnNewButton.setBackground(SystemColor.info);
-		btnNewButton.setFont(new Font("Arial", Font.BOLD, 16));
-		btnNewButton.setBounds(22, 10, 114, 55);
-		pnl1.add(btnNewButton);
+		boatPanel.add(boatButton);
 
 		frame.setResizable(false);
 		frame.setPreferredSize(new Dimension(870, 630));
@@ -405,27 +411,54 @@ public class Main {
 					restartTimer();
 					if(loc >= 10 && IDECount == 0) {
 						loc -= 10;
-						clickBoost = 3;
+						clickBoost = 1;
 						lblLOC.setText(Integer.toString(loc));
 						IDECount++;
-						lblIDE.setText("Paid Java IDE (1/3)");
-						txtIDE.setText("You have a proper IDE but you want \r\n more!.\r\n- Increases LOC generated from \r\nclicking by 6.\r\n");
+						lblIDE.setText("Paid Java IDE (1/6)");
+						txtIDE.setText("You have a proper IDE but you want \r\n more!.\r\n- Increases LOC generated from \r\nclicking by 10.\r\n");
 						lblIDE_cost.setText("Cost: 100");
 					}
 					else if (loc >= 100 && IDECount == 1) {
 						loc -= 100;
-						clickBoost = 6;
+						clickBoost = 10;
 						lblLOC.setText(Integer.toString(loc));
-						lblIDE.setText("Ultimate Paid Java IDE (2/3)");
-						txtIDE.setText("You have a paid IDE but you want \r\n even more!");
+						lblIDE.setText("Ultimate Paid Java IDE (2/6)");
+						txtIDE.setText("You have a paid IDE but you want \r\neven more! Increase LOC/click by 100");
+						lblIDE_cost.setText("Cost: 1000");
+						IDECount++;
+					}
+					else if (loc >= 1000 && IDECount == 2) {
+						loc -= 1000;
+						clickBoost = 100;
+						lblLOC.setText(Integer.toString(loc));
+						lblIDE.setText("Ultimate Paid Java IDE (3/6)");
+						txtIDE.setText("You have a paid IDE but you want \r\neven more! Increase LOC/click by 1000");
 						lblIDE_cost.setText("Cost: 10000");
 						IDECount++;
 					}
-					else if (loc >= 10000 && IDECount == 2) {
+					else if (loc >= 10000 && IDECount == 3) {
 						loc -= 10000;
-						clickBoost = 12;
+						clickBoost = 1000;
 						lblLOC.setText(Integer.toString(loc));
-						lblIDE.setText("Ultimate Paid Java IDE (3/3)");
+						lblIDE.setText("Ultimate Paid Java IDE (4/6)");
+						txtIDE.setText("You have a paid IDE but you want \r\neven more!Increase LOC/click by 10000");
+						lblIDE_cost.setText("Cost: 100000");
+						IDECount++;
+					}
+					else if (loc >= 100000 && IDECount == 4) {
+						loc -= 100000;
+						clickBoost = 10000;
+						lblLOC.setText(Integer.toString(loc));
+						lblIDE.setText("Ultimate Paid Java IDE (5/6)");
+						btnIDE.setText("Purchased");
+						txtIDE.setText("You now have the best of the best!\r\n(but there's an update!)\r\nIncrease LOC/click by 100000");
+						IDECount++;
+					}
+					else if (loc >= 1000000 && IDECount == 5) {
+						loc -= 1000000;
+						clickBoost = 100000;
+						lblLOC.setText(Integer.toString(loc));
+						lblIDE.setText("Ultimate Paid Java IDE (6/6)");
 						btnIDE.setEnabled(false);
 						btnIDE.setText("Purchased");
 						txtIDE.setText("You now have the best of the best!");
@@ -801,3 +834,4 @@ public class Main {
 			out.close();
 		}
 	}
+
