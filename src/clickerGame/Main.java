@@ -121,7 +121,7 @@ public class Main {
 		textboxWords.add("do {} while (yes);");
 		textboxWords.add("@here");
 		textboxWords.add("double num = 6.9;");
-		textboxWords.add("if (((!a) && (b)) || ((a) && ((!b) || a)))");
+		textboxWords.add("if(((!a)&&(b))||((a)&&((!b)||a)))");
 		textboxWords.add("never gonna let you down");
 		textboxWords.add("textboxWords.add(\"\");");
 		textboxWords.add("You're watching Treehouse");
