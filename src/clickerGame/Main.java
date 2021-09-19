@@ -10,6 +10,7 @@ package clickerGame;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.Timer;
 import java.io.*;
+import java.util.Scanner;
 
 public class Main {
 		static JFrame frame = new JFrame();
@@ -20,7 +21,6 @@ public class Main {
 		private static final JLabel lblPerSec = new JLabel("");
 		static JScrollPane scrollPane = new JScrollPane();
 		public static Timer timer;
-		private File saveData = new File("resources\\saveData.txt");
 
 		public static int loc = 0; // variable that stores the total LOC count
 		public static double locDecimal = 0.0;
@@ -204,6 +204,36 @@ public class Main {
 			}
 		});
 		boatPanel.add(boatButton);
+		JButton btnNewButton = new JButton("Load");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				File file = new File("resources\\saveData.txt");
+				Scanner scan = null;
+				try {
+					scan = new Scanner(file);
+				} catch (FileNotFoundException ex) {
+					ex.printStackTrace();
+				}
+				String line = scan.nextLine();
+				System.out.println(line);
+				loc = Integer.parseInt(line);
+				locDecimal = Double.parseDouble(scan.nextLine());
+				locTime = Double.parseDouble(scan.nextLine());
+				stackOverflowCount = Integer.parseInt(scan.nextLine());
+				gitHubCount = Integer.parseInt(scan.nextLine());
+				IDECount = Integer.parseInt(scan.nextLine());
+				youtubeCount = Integer.parseInt(scan.nextLine());
+				classmateCount = Integer.parseInt(scan.nextLine());
+				keyboardCount = Integer.parseInt(scan.nextLine());
+				clickBoost = Integer.parseInt(scan.nextLine());
+				keyboardBoost = Integer.parseInt(scan.nextLine());
+				jdkCount = Integer.parseInt(scan.nextLine());
+			}
+		});
+		btnNewButton.setBackground(SystemColor.info);
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 16));
+		btnNewButton.setBounds(22, 10, 114, 55);
+		pnl1.add(btnNewButton);
 
 		frame.setResizable(false);
 		frame.setPreferredSize(new Dimension(870, 630));
