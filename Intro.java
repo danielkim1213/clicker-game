@@ -25,7 +25,7 @@ public class Intro {
 	}
 	public static void instruction()
 	{
-		frameIntro.setBackground(Color.WHITE);
+		frameIntro.setBackground(Color.decode("#CCDAEA"));
 		frameIntro.setResizable(false);
 		frameIntro.setPreferredSize(new Dimension(870, 630));
 		frameIntro.setSize(870, 630);
@@ -40,8 +40,10 @@ public class Intro {
 				close();
 			}
 		});
-		btnNewButton.setBackground(new Color(165, 42, 42));
-		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setBackground(Color.decode("#00305F"));
+		btnNewButton.setForeground(Color.decode("#F5EAEC"));
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 30));
 		btnNewButton.setBounds(308, 476, 280, 90);
 		frameIntro.getContentPane().add(btnNewButton);
@@ -58,6 +60,7 @@ public class Intro {
 				"Perhaps you’ll even make your way to something called Hack\r\nthe North, an " +
 				"mysterious event you know only from the echoing\r\nvoices of the command line….");
 		JLabel lblGameName = new JLabel("KEYBOARD CLICKER");
+		lblGameName.setForeground(Color.decode("#E36F7A"));
 		lblGameName.setFont(new Font("Arial", Font.BOLD, 50));
 		lblGameName.setBounds(44, 10, 756, 90);
 		frameIntro.getContentPane().add(lblGameName);
