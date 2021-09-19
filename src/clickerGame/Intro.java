@@ -41,7 +41,7 @@ public class Intro {
 		btnNewButton.setForeground(Color.decode("#F5EAEC"));
 		btnNewButton.setBorderPainted(false);
 		btnNewButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btnNewButton.setFont(new Font("Arial", Font.BOLD, 30));
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 29));
 		btnNewButton.setBounds(308, 476, 280, 90);
 		frameIntro.getContentPane().add(btnNewButton);
 		
@@ -51,6 +51,7 @@ public class Intro {
 		txtDescription.setBounds(12, 116, 832, 350);
 		frameIntro.getContentPane().add(txtDescription);
 		txtDescription.setColumns(10);
+		txtDescription.setBackground(Color.decode("#F5EAEC"));
 		txtDescription.setText("You’re a lonely boat programmer drifting out in a sea of terrible\r\nspaghetti code " +
 				"and you’ve taken upon yourself a mission that \r\nwould make any other boat shudder: fix the mess around you," +
 				"\r\none line at a time, and code your way back to society.\r\n" +
@@ -59,7 +60,7 @@ public class Intro {
 		JLabel lblGameName = new JLabel("KEYBOARD CLICKER");
 		lblGameName.setForeground(Color.decode("#E36F7A"));
 		lblGameName.setFont(new Font("Arial", Font.BOLD, 50));
-		lblGameName.setBounds(44, 10, 756, 90);
+		lblGameName.setBounds(165, 10, 756, 90);
 		frameIntro.getContentPane().add(lblGameName);
 		frameIntro.setVisible(true);
 		frameIntro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
