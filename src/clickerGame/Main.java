@@ -469,7 +469,7 @@ public class Main {
 			lblIDE_cost.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 22));
 			
 			final JTextArea txtIDE = new JTextArea();
-			txtIDE.setText("Looks nicer than doing it in Notepad.\r\n- Increases LOC generated from \r\nclicking by 3.\r\n");
+			txtIDE.setText("Looks nicer than doing it in Notepad.\r\n- Increases LOC generated from \r\nclicking by 1.\r\n");
 			txtIDE.setFont(new Font("Arial", Font.PLAIN, 17));
 			txtIDE.setEditable(false);
 			txtIDE.setBackground(new Color(255, 239, 213));
