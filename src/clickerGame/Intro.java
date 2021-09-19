@@ -57,7 +57,7 @@ public class Intro {
 				"\r\none line at a time, and code your way back to society.\r\n" +
 				"Perhaps you’ll even make your way to something called Hack\r\nthe North, an " +
 				"mysterious event you know only from the echoing\r\nvoices of the command line….");
-		JLabel lblGameName = new JLabel("KEYBOARD CLICKER");
+		JLabel lblGameName = new JLabel("CODE CLICKER");
 		lblGameName.setForeground(Color.decode("#E36F7A"));
 		lblGameName.setFont(new Font("Arial", Font.BOLD, 50));
 		lblGameName.setBounds(165, 10, 756, 90);
