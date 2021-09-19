@@ -1,13 +1,13 @@
 package clickerGame;
 
-	import java.awt.*;
-	import javax.swing.*;
-	import java.awt.event.*;
-	import java.util.*;
-	import javax.swing.GroupLayout.Alignment;
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.Timer;
-import java.io.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.File;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class Main {
 		static JFrame frame = new JFrame();
@@ -20,7 +20,7 @@ public class Main {
 		private static Timer timer;
 		private File saveData = new File("resources\\saveData.txt");
 
-		public static int loc = 0; // variable that stores the total LOC count
+		public static int loc = 1000000; // variable that stores the total LOC count
 		public static double locDecimal = 0.0;
 		public static double locTime = 0.0; // variable that counts how many LOCs are gained per second
 		public static int stackOverflowCount = 0; // counts  how many times each upgrade has been purchased
@@ -37,6 +37,7 @@ public class Main {
 		private static void locMining(KeyEvent e)
 		{
 			int rdm = (int)(Math.random() * textboxWords.size());
+			restartTimer();
 			if(e.getKeyCode() == KeyEvent.VK_ENTER)
 			{
 				String qCode = lblCodes.getText();
@@ -45,7 +46,7 @@ public class Main {
 				inputCode = inputCode.replaceAll(" ", "");
 				if (qCode.equals(inputCode))
 				{
-					int plus_loc = (inputCode.length() * (1 + (keyboardBoost/100)));
+					int plus_loc = (int) (inputCode.length() * (1 + (keyboardBoost/100.0)));
 					loc += plus_loc;
 					lblLOC.setText(Integer.toString(loc));
 					txtInputCode.setText("");
@@ -58,8 +59,16 @@ public class Main {
 			}
 		}
 
-		public static void setTimer() {
-			timer = new Timer(1000 - (jdkCount * 20), new ActionListener(){
+	public static void restartTimer() {
+		if (timer != null && timer.isRunning()) {
+			timer.stop();
+		}
+		setTimer();
+		timer.start();
+	}
+
+	public static void setTimer() {
+			timer = new Timer(1000 - (jdkCount * 30), new ActionListener(){
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -84,9 +93,10 @@ public class Main {
 			frame.setVisible(true);
 		}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		Intro.instruction();
 		//adding Strings in textboxWords ArrayList
+
 		textboxWords.add("int i = 0;");
 		textboxWords.add("String hello");
 		textboxWords.add("for (int i = 0)");
@@ -116,11 +126,10 @@ public class Main {
 		textboxWords.add("You're watching Treehouse");
 		textboxWords.add("Try Grammarly for Free");
 		textboxWords.add("Remember to drink water!");
-		textboxWords.add("Sponsored by Raid Shadow Legends!");
+		textboxWords.add("Raid Shadow Legends");
 		textboxWords.add("Sleep is good");
 		textboxWords.add("DIAMONDS!");
 		textboxWords.add("char a = 'A'");
-		textboxWords.add("how do they program a programming language to program a program to program programs?");
 		textboxWords.add("push through the pain");
 		textboxWords.add("help im trapped in a video game-");
 		textboxWords.add("whatever floats your boat");
@@ -132,6 +141,7 @@ public class Main {
 		JPanel pnl1 = new JPanel();
 		//pnl1.setBackground(SystemColor.info);
 		pnl1.setBackground(new Color(232, 241, 255));
+
 
 		frame.getContentPane().add(pnl1);
 		pnl1.setLayout(null);
@@ -179,14 +189,21 @@ public class Main {
 
 		BoatButton boatButton = new BoatButton(boat);
 		boatPanel.add(boatButton);
+		JButton btnNewButton = new JButton("Load");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBackground(SystemColor.info);
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 16));
+		btnNewButton.setBounds(22, 10, 114, 55);
+		pnl1.add(btnNewButton);
 
 		frame.setResizable(false);
 		frame.setPreferredSize(new Dimension(870, 630));
 		frame.setSize(870, 630);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTimer();
-		timer.start();
 		scrollPane.getVerticalScrollBar().setUnitIncrement(8);
 	}
 		
@@ -226,6 +243,7 @@ public class Main {
 			btnGitHub.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					restartTimer();
 					if (loc >= (int) (100 * (Math.pow(1.1, gitHubCount)))) {
 						loc -= (int) (100 * (Math.pow(1.1, gitHubCount)));
 						lblGitHub_cost.setText("cost: " + (int) (100 * (Math.pow(1.1, gitHubCount + 1))));
@@ -303,6 +321,7 @@ public class Main {
 			btnStackOverflow.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					restartTimer();
 					if (loc >= (int) (15 * (Math.pow(1.1, stackOverflowCount)))) {
 						loc -= (int) (15 * (Math.pow(1.1, stackOverflowCount)));
 						lblStackOverflow_cost.setText("cost: " + (int) (15 * (Math.pow(1.1, stackOverflowCount + 1))));
@@ -383,6 +402,7 @@ public class Main {
 			btnIDE.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					restartTimer();
 					if(loc >= 10 && IDECount == 0) {
 						loc -= 10;
 						clickBoost = 3;
@@ -478,6 +498,7 @@ public class Main {
 			btnYouTube.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					restartTimer();
 					if (loc >= (int) (700 * (Math.pow(1.1, youtubeCount)))) {
 						loc -= (int) (700 * (Math.pow(1.1, youtubeCount)));
 						lblYouTube_cost.setText("cost: " + (int) (700 * (Math.pow(1.1, youtubeCount + 1))));
@@ -545,7 +566,7 @@ public class Main {
 			
 			final JLabel lblClassmate = new JLabel("Friendly \"Classmate\" (0)");
 			lblClassmate.setForeground(new Color(46, 139, 87));
-			lblClassmate.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
+			lblClassmate.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 16));
 			
 			final JLabel lblClassmate_cost = new JLabel("cost: 5000");
 			lblClassmate_cost.setForeground(new Color(46, 139, 87));
@@ -562,6 +583,7 @@ public class Main {
 			btnClassmate.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					restartTimer();
 					if (loc >= (int) (5000 * (Math.pow(1.1, classmateCount)))) {
 						loc -= (int) (5000 * (Math.pow(1.1, classmateCount)));
 						lblClassmate_cost.setText("cost: " + (int) (5000 * (Math.pow(1.1, classmateCount + 1))));
@@ -623,14 +645,16 @@ public class Main {
 			lblKeyboard.setForeground(new Color(255, 0, 255));
 			lblKeyboard.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 17));
 			
-			JLabel lblKeyboard_cost = new JLabel("cost: 10000");
+			JLabel lblKeyboard_cost = new JLabel("cost: 1000");
 			lblKeyboard_cost.setForeground(new Color(255, 0, 255));
 			lblKeyboard_cost.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 22));
 			
 			JTextArea txtKeyboard = new JTextArea();
-			txtKeyboard.setText("Your neighbors show up at your door with a \r"+
-					"noise complaint, but you can\u2019t...stop...coding...\r"+
-					"- +30% LOC from textbox mining\r");
+			txtKeyboard.setText("""
+					Your neighbors show up at your door with a \r
+					noise complaint, but you can\u2019t...stop...coding...\r
+					- +30% LOC from textbox mining\r
+					""");
 			txtKeyboard.setFont(new Font("Arial", Font.PLAIN, 15));
 			txtKeyboard.setEditable(false);
 			txtKeyboard.setBackground(new Color(255, 239, 213));
@@ -640,9 +664,10 @@ public class Main {
 			btnKeyboard.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					if (loc >= (int) (10000 * (Math.pow(1.1, keyboardCount)))) {
-						loc -= (int) (10000 * (Math.pow(1.1, keyboardCount)));
-						lblKeyboard_cost.setText("cost: " + (int) (10000 * (Math.pow(1.1, keyboardCount + 1))));
+					restartTimer();
+					if (loc >= (int) (1000 * (Math.pow(1.1, keyboardCount)))) {
+						loc -= (int) (1000 * (Math.pow(1.1, keyboardCount)));
+						lblKeyboard_cost.setText("cost: " + (int) (1000 * (Math.pow(1.1, keyboardCount + 1))));
 						keyboardCount++;
 						lblKeyboard.setText("Mechanical Keyboard (" + keyboardCount + ")");
 						keyboardBoost += 30;
@@ -704,7 +729,7 @@ public class Main {
 			lblJDK_cost.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 22));
 			
 			JTextArea txtJDK = new JTextArea();
-			txtJDK.setText("Looks like you\u2019ll need to do a lot of \r\nGoogling.\r\n- Decreases LOC/sec timer by 1% \r\nper level \r\n");
+			txtJDK.setText("Looks like you\u2019ll need to do a lot of \r\nGoogling.\r\n- Decreases LOC/sec timer by 3% \r\nper level \r\n");
 			txtJDK.setFont(new Font("Arial", Font.PLAIN, 17));
 			txtJDK.setEditable(false);
 			txtJDK.setBackground(new Color(255, 239, 213));
@@ -714,9 +739,10 @@ public class Main {
 			btnJDK.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					if (loc >= (int) (300 * (Math.pow(1.3, jdkCount))) && jdkCount < 23) {
-						loc -= (int) (300 * (Math.pow(1.3, jdkCount)));
-						lblJDK_cost.setText("cost: " + (int) (300 * (Math.pow(1.3, jdkCount + 1))));
+					restartTimer();
+					if (loc >= (int) (300 * (Math.pow(1.2, jdkCount))) && jdkCount < 23) {
+						loc -= (int) (300 * (Math.pow(1.2, jdkCount)));
+						lblJDK_cost.setText("cost: " + (int) (300 * (Math.pow(1.2, jdkCount + 1))));
 						jdkCount++;
 						lblJDK.setText("JDK Upgrade (" + jdkCount + "/23)");
 						lblLOC.setText(Integer.toString(loc));
